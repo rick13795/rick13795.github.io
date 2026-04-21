@@ -1,8 +1,16 @@
-+++
-date = '2026-04-21T11:10:31+08:00'
-draft = false
-title = 'frida'
-+++
+---
+date: 2026-04-21T11:10:31+08:00
+draft: false
+title: "frida"
+description: "frida spawn模式注入so的实现原理"
+tags:
+  - frida
+  - Android逆向
+  - so注入
+  - zygote
+ShowToc: true
+TocOpen: true
+---
 ## 1.spawn模式注入so的实现原理
 核心思想是先向zygote进程注入一个mon.so，这样它运行在zygote进程，就可以轻而易举的实现对zygote进程中函数的hook，通过hook fork系列函数，在fork触发之后再安装对setArgV0的hook，在setArgV0函数触发时判断是否是目标app，从而确定是否dlopen需要注入的so，
 
